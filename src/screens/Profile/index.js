@@ -75,10 +75,10 @@ export default function ProfileScreen({navigation}) {
 
         {/* --- 3. 설정 리스트 카드 --- */}
         <View style={[styles.card, styles.menuCard]}>
-          <MenuListItem title="계정 설정" navigation={navigation} ScreenName='AccountSetting' />
+          <MenuListItem title="계정 정보" navigation={navigation} ScreenName='AccountSetting' />
           <MenuListItem title="마이페이지" navigation={navigation} ScreenName='MyPage'/>
           <MenuListItem title="리워드 히스토리" navigation={navigation} ScreenName='RewardHistory'/>
-          <MenuListItem title="고객 지원" navigation={navigation} ScreenName='CSpage'/>
+          <MenuListItem title="문의 게시판" navigation={navigation} ScreenName='CSpage'/>
         </View>
         
       </ScrollView>

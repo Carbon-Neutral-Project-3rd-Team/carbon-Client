@@ -12,6 +12,8 @@ import AccountSetting from './screens/Profile/AccountSetting';
 import MyPage from './screens/Profile/MyPage';
 import CSpage from './screens/Profile/CSpage';
 import RewardHistory from './screens/Profile/RewardHistory';
+import CSwriting from './screens/Profile/CSwriting';
+import CSreading from './screens/Profile/CSreading';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,8 +59,17 @@ export default function App(){
             <Stack.Screen
               name="CSpage"
               component={CSpage}
-              options={{title: '고객 지원'}}
+              options={{title: '문의 게시판'}}
             />
+            <Stack.Screen
+            name="CSwriting"
+            component={CSwriting}
+            options={{title: '문의하기'}}
+            />
+            <Stack.Screen
+            name='CSreading'
+            component={CSreading}
+            options={{title: '게시물'}}/>
         </Stack.Navigator>
         </NavigationContainer>  
     );  
