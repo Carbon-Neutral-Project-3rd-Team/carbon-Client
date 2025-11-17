@@ -3,34 +3,32 @@ import { StyleSheet} from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f6f8', // 이미지의 배경색과 유사하게 설정
+    backgroundColor: '#f4f6f8',
   },
     topCircleContainer: {
         paddingVertical: 40,
         alignItems: 'center',
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 3.84,
+        elevation: 10,
     },
     topCircle: {
-    width: 200,
-    height: 200,
-    borderRadius: 100, // 원형
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 15, // 원 테두리
-    borderColor: '#E8E8E8', // 테두리 색상
-    // 그림자 (선택)
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: '100%',
   },
   CircleInfoTitle: {
-    fontSize: 18,
-    color: '#666',
-    fontWeight: '600',
+    fontSize: 25,
+    color: 'black',
+    fontWeight: 'bold',
     },
-
+    CircleValue:{
+      fontSize: 20,
+      color: '#666',
+    },
   cardContainer: {
     padding:20, // 스크롤 뷰 내부에 여백
     justifyContent: 'flex-end',

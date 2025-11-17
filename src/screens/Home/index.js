@@ -1,22 +1,52 @@
 import React from 'react';
 import { 
-  StyleSheet, 
   Text, 
   View, 
-  ScrollView, 
   TouchableOpacity, 
-  SafeAreaView 
+  SafeAreaView,
 } from 'react-native';
+import { useEffect } from 'react';
+import { startPedometer, usePedometerStore } from '../Home/PedometerLogic';
 import styles from '../../styles/HomeScreen/Home';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
+
 
 
 const TopCircleDisplay = () =>{
+
+  const steps = usePedometerStore((s) => s.steps);
+
+  const GOAL = 100; //임시 목표 걸음 수 입니다.
+
+  const fillpercent = (steps / GOAL) * 100;
+
+  useEffect(() => {
+      startPedometer();
+    }, []);
+
     return(
-        <View style={styles.topCircleContainer}>
-          <View style={styles.topCircle}>
-            <Text style={styles.CircleInfoTitle}>걸음 수 표시</Text>
-          </View>
-        </View>
+      <View style={styles.topCircleContainer}>
+      <AnimatedCircularProgress
+      size={210}
+      width={20}
+      fill={fillpercent}
+      tintColor='#5a9cd0'
+      backgroundColor='#fff'
+      padding={10}
+      rotation={0}
+      >
+        {
+          (fill) => (
+            <View style={styles.topCircle}>
+              <Text style={styles.CircleInfoTitle}>
+                {steps}
+                <Text style={styles.CircleValue}>걸음</Text>
+              </Text>
+            </View>
+          )
+        }
+      </AnimatedCircularProgress>
+      </View>
     );
 }
 
@@ -70,9 +100,7 @@ export default function MainLayoutScreen({navigation}) {
             {/* 어제 (구분선 포함) */}
             <View style={[styles.activityBox, styles.verticalDivider]}>
               <Text style={styles.activityTitle}>어제</Text>
-              <Text style={styles.activityValue}>
-                0<Text style={styles.unit}>보</Text>
-              </Text>
+              <Text style={styles.activityValue}>0<Text style={styles.unit}>보</Text></Text>
             </View>
 
             {/* 보유 포인트 (구분선 포함) */}

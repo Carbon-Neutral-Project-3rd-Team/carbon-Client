@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-//import React from 'react';
+import React from 'react';
 
 import Coupon from '../../screens/Coupon/index';
 
@@ -9,7 +9,7 @@ export default function CouponIndex() {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                options={{ headerShown: false }}
+                options={{ headerShown:false }}
                 name="Coupon"
                 component={Coupon}
             />

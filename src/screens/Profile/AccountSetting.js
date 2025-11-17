@@ -7,12 +7,30 @@ import {
   ScrollView,
   TouchableOpacity,
   StatusBar,
+  Alert,
+  Button,
 } from 'react-native';
 import styles from '../../styles/ProfileScreen/AccountSetting';
-
+import { useAuth } from '../../../AuthContext';
 //목업 데이터 대신 임의의 사용자를 지정
 //실제론 서버에서 데이터를 받아야 함
 const App = () => {
+
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    Alert.alert(
+      "로그아웃",
+      "정말로 로그아웃하시겠습니까?",
+      [
+        {text: "취소", style: "cancel"},
+        {text: "확인",
+          onPress: () => logout()
+        }
+      ]
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={styles.container.backgroundColor} />
@@ -41,6 +59,13 @@ const App = () => {
             <Text style={styles.label}>이름</Text>
             <Text style={styles.value}>김*하</Text>
           </View>
+        </View>
+        //--로그아웃 버튼--
+        <View style={styles.logoutButtonContainer}>
+          <Button
+          title="로그아웃"
+          onPress={handleLogout}
+          color="#e74c3c"/>
         </View>
 
       </ScrollView>

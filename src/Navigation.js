@@ -2,7 +2,11 @@ import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {View, ActivityIndicator} from 'react-native';
+//---로그인 스크린 import---
+import AuthScreen from './screens/Login/loginForm';
+//---스크린 import---
 import Root from './router/TabIndex';
 
 import MyCoupon from './screens/Coupon/MyCoupon';
@@ -14,13 +18,34 @@ import CSpage from './screens/Profile/CSpage';
 import RewardHistory from './screens/Profile/RewardHistory';
 import CSwriting from './screens/Profile/CSwriting';
 import CSreading from './screens/Profile/CSreading';
+import { useAuth } from '../AuthContext';
+
+//--걸음 수 스크린은 일단 따로 표시
+import StepScreen from './screens/Home/pedometer';
 
 const Stack = createNativeStackNavigator();
 
-export default function App(){
+export default function AppNavigator(){
+
+    const { isLoading, loggedInUser } = useAuth();
+
+    if(isLoading){
+        return(
+            <View style={{flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <ActivityIndicator size="large" />
+            </View>
+        );
+    }
+
     return (
         <NavigationContainer>
         <Stack.Navigator>
+            {loggedInUser ? (
+                //--로그인이 되었다면 screen 보여주기
+            <>
             <Stack.Screen
                 name="이전"
                 component={Root}
@@ -69,7 +94,21 @@ export default function App(){
             <Stack.Screen
             name='CSreading'
             component={CSreading}
-            options={{title: '게시물'}}/>
+            options={{title: '게시물'}}
+            />
+            <Stack.Screen
+            name='pedometer'
+            component={StepScreen}
+            options={{title:'걸음 수'}}/>
+            </>
+            ) : (
+                //--로그아웃인 상태
+                <Stack.Screen
+                name="Auth"
+                component={AuthScreen}
+                options={{headerShown: false}}
+                />
+            )}
         </Stack.Navigator>
         </NavigationContainer>  
     );  

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   modalBackdrop: { //모달 스타일
     flex: 1,
-    backgroundColor: '#rgb(0,0,0,0.5)', // 반투명 검은색 배경
+    backgroundColor: 'rgba(0,0,0,0.5)', // 반투명 검은색 배경 (rgb -> rgba로 수정)
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
-    marginLeft: 8, // '교
+    marginLeft: 8, 
     marginRight: 8,
   },
   modalButtonConfirm: {
@@ -131,11 +131,18 @@ const styles = StyleSheet.create({
   infoBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    padding: 30,
+    backgroundColor: "#fff",
+    paddingHorizontal: 20,
   },
   infoText: {
     fontSize: 18,
-    color: 'bliack',
+    color: 'black', // 'bliack' -> 'black'으로 수정!
+    fontWeight: 'bold',
+  },
+  infoValue:{
+    fontSize: 18,
+    color: "red",
     fontWeight: 'bold',
   },
   // 3. 쿠폰 카드 (CouponCard)

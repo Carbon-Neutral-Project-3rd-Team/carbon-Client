@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
+import { AuthProvider } from './AuthContext';
 
 import AppNavigator from './src/Navigation';
 import * as SplashScreen from "expo-splash-screen";
@@ -18,10 +19,16 @@ async function delay_splash(){
 }
 
 export default function App() {
-  delay_splash();
+  
+  useEffect(() => {
+    delay_splash();
+  }, []);
+
   return (
     <SafeAreaProvider>
+      <AuthProvider>
         <AppNavigator />
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }

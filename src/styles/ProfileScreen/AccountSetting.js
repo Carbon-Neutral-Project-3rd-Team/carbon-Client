@@ -9,7 +9,10 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     padding: 20, // 화면 전체의 여백
   },
-
+  logoutButtonContainer: {
+    marginTop: 50, // 다른 컴포넌트와 간격을 줍니다.
+    paddingHorizontal: 20, // 버튼 좌우 여백
+  },
   // 카드 공통 스타일
   card: {
     backgroundColor: '#ffffff',

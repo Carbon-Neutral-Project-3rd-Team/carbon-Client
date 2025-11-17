@@ -133,14 +133,15 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+
       <StatusBar barStyle="dark-content" />
-      <ScrollView contentContainerStyle={styles.container}>
-        {/* 2. 보유 현황 */}
-        <View style={styles.infoBar}>
-          <Text style={styles.infoText}>보유 쿠폰: {userCoupons}개</Text>
-          <Text style={styles.infoText}>보유 포인트: {userPoints.toLocaleString()}p</Text>
+      <View style={styles.infoBar}> 
+          <Text style={styles.infoText}>보유 쿠폰: <Text style={styles.infoValue}>{userCoupons}</Text>개</Text>
+          <Text style={styles.infoText}>보유 포인트: <Text style={styles.infoValue}>{userPoints.toLocaleString()}</Text>p</Text>
         </View>
 
+      <ScrollView contentContainerStyle={styles.container}>
+ 
         {/* 3. 쿠폰 목록 */}
         <View style={styles.couponListContainer}>
           {couponList.map(coupon => (
