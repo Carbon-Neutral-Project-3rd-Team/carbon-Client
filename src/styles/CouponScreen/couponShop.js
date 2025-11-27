@@ -1,226 +1,178 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#F4F6F8', // 앱 배경색
+  container: { flex: 1, backgroundColor: '#FFF' },
+  backgroundGradient: { position: 'absolute', width: '100%', height: '50%' },
+  safeArea: { flex: 1 },
+  
+  // 헤더 영역 스타일
+  headerContent: { padding: 20, paddingBottom: 10 },
+  headerTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 20 },
+  userInfo: { marginBottom: 10 },
+  badgeContainer: { 
+    backgroundColor: '#FFF', padding: 6, borderRadius: 12, alignSelf: 'flex-start', marginBottom: 8,
+    shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 2, elevation: 1
   },
-  container: {
-    padding: 20,
+  badgeText: { color: '#8B5E3C', fontWeight: 'bold', fontSize: 12 },
+  userName: { fontSize: 26, fontWeight: 'bold', color: '#111', marginBottom: 4 },
+  subText: { fontSize: 16, color: '#666', marginBottom: 15 },
+  statsRow: { flexDirection: 'row', alignItems: 'center' },
+  pointText: { fontSize: 18, fontWeight: 'bold', marginRight: 15 },
+  ticketText: { fontSize: 18, fontWeight: 'bold' },
+
+  // [핵심] 캐러셀(가로 스크롤) 스타일
+  carouselContainer: {
+    marginTop: 10,
   },
-  modalBackdrop: { //모달 스타일
+  carouselContent: {
+    paddingHorizontal: 20, // 시작 부분 여백
+    paddingBottom: 20, // 그림자 공간 확보
+  },
+  cardItem: {
+    height: 300,
+    borderRadius: 20,
+    padding: 24,
+    justifyContent: 'space-between',
+    // 그림자
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 5,
+  },
+  cardTextContent: { zIndex: 1 },
+  cardTitle: { fontSize: 14, color: '#555', marginBottom: 5, fontWeight: '600' },
+  cardBrand: { fontSize: 22, color: '#222', fontWeight: 'bold', marginBottom: 5 },
+  cardDesc: { fontSize: 15, color: '#777' },
+
+  // 카드 내부 요소
+  exchangeButton: {
+    alignSelf: 'flex-end', // 오른쪽 정렬
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+  },
+  exchangeButtonText: { color: '#FFF', fontWeight: 'bold', fontSize: 14 },
+  cardIconPlaceholder: { position: 'absolute', right: 20, top: 20 },
+
+  // 페이지네이션 점
+  paginationContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 0,
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginHorizontal: 4,
+  },
+  activeDot: {
+    width: 20, // 활성화되면 길어지는 효과
+  },
+  modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)', // 반투명 검은색 배경 (rgb -> rgba로 수정)
+    backgroundColor: 'rgba(0,0,0,0.5)', // 반투명 검은 배경
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContent: {
-    backgroundColor: '#868e96',
-    borderRadius: 16,
-    paddingVertical: 24,
-    paddingHorizontal: 20,
-    width: '80%', // 화면 가로의 80%
-    alignItems: 'center',
-  },
-  modalTitle: {
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 24,
-  },
-  modalText: {
-    fontSize: 16,
-    color: '#fff',
-    textAlign: 'center',
-    marginBottom: 24,
-  },
-  modalButtonGroup: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  modalButton: {
-    flex: 1, // 버튼이 1:1 비율로 공간을 차지
-    paddingVertical: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  modalButtonClose: {
-    flex: 1, // '닫기' 버튼이 공간을 차지
-    backgroundColor: '#FFF', // 흰색 배경
-    paddingVertical: 14,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginLeft: 8, 
-    marginRight: 8,
-  },
-  modalButtonConfirm: {
-    flex: 1, // '교환' 버튼이 공간을 차지
-    backgroundColor: '#4CAF50', // 초록색 (이전 버튼 색과 동일)
-    paddingVertical: 14,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginRight: 8,
-    marginLeft: 8, // '닫기' 버튼과의 간격
-  },
-  modalButtonTextClose: {
-    color: '#333', // 검은색 텍스트
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  modalButtonTextConfirm: {
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  successModalBackdrop: { //2번 모달
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)', // 동일한 배경
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  successModalContent: {
-    backgroundColor: '#868E96', // 동일한 회색 배경
-    borderRadius: 16,
-    padding: 24,
     width: '80%',
-    alignItems: 'center',
-  },
-  successModalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#FFF',
-    marginBottom: 8,
-  },
-  successModalSubtitle: {
-    fontSize: 14,
-    color: '#E9ECEF', // 약간 더 연한 흰색
-    marginBottom: 16,
-  },
-  successModalPoints: {
-    fontSize: 14,
-    color: '#FFF',
-    fontWeight: '500',
-    marginBottom: 24,
-  },
-  successModalButton: {
-    flexDirection: 'row', // '내 쿠폰함'과 '>' 아이콘 가로 배치
-    backgroundColor: 'transparent',
-    borderColor: '#FFF', // 흰색 테두리
-    borderWidth: 1.5,
-    borderRadius: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  successModalButtonText: {
-    color: '#FFF',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  successModalButtonIcon: {
-    color: '#FFF',
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginLeft: 4, // 텍스트와의 간격
-  },
-  // 2. 보유 현황
-  infoBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    borderRadius: 20,
     padding: 30,
-    backgroundColor: "#fff",
-    paddingHorizontal: 20,
-  },
-  infoText: {
-    fontSize: 18,
-    color: 'black', // 'bliack' -> 'black'으로 수정!
-    fontWeight: 'bold',
-  },
-  infoValue:{
-    fontSize: 18,
-    color: "red",
-    fontWeight: 'bold',
-  },
-  // 3. 쿠폰 카드 (CouponCard)
-  card: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 30,
-    marginBottom: 16, // 카드 사이 간격
-    flexDirection: 'row', // 가로 배치
-    justifyContent: 'space-between', // 양쪽 끝으로 밀기
-    alignItems: 'center', // 세로 중앙 정렬
-    // 그림자 (iOS)
+    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    // 그림자 (Android)
-    elevation: 3,
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
-  cardLeft: {
-    flexDirection: 'row',
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    color: '#333',
+  },
+  modalInfoBox: {
+    width: '100%',
+    backgroundColor: '#F5F5F5',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 20,
     alignItems: 'center',
   },
-  cardImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 8,
-    marginRight: 20,
-  },
-  // (임시) 이미지 플레이스홀더 스타일
-  cardImagePlaceholder: {
-    width: 60,
-    height: 60,
-    borderRadius: 8,
-    marginRight: 20,
-    backgroundColor: '#FADDAF', // 이미지와 비슷한 색
-  },
-  cardTextContainer: {
-    justifyContent: 'center',
-  },
-  cardTitle: {
+  modalBrand: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 4,
   },
-  cardSubtitle: {
+  modalDesc: {
     fontSize: 14,
-    color: '#777',
-    marginVertical: 2, // 위아래 살짝 간격
-    marginBottom: 4,
+    color: '#666',
+    marginBottom: 5,
   },
-  cardPrice: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#f00',
-  },
-  // 교환하기 버튼
-  button: {
-    paddingVertical: 10,
-    paddingHorizontal: 18,
-    borderRadius: 8,
-  },
-  buttonActive: {
-    backgroundColor: '#0b8348', // 초록색 버튼
-  },
-  buttonDisabled: {
-    backgroundColor: '#E0E0E0', // 회색 버튼
-  },
-  buttonText: {
+  modalPoint: {
     fontSize: 14,
     fontWeight: 'bold',
+    marginTop: 5,
   },
-  buttonTextActive: {
-    color: '#FFFFFF', // 활성 버튼 텍스트 (흰색)
+  modalButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
   },
-  buttonTextDisabled: {
-    color: '#9E9E9E', // 비활성 버튼 텍스트 (진한 회색)
+  modalBtn: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginHorizontal: 5,
+  },
+  modalBtnCancel: {
+    backgroundColor: '#EEE',
+  },
+  modalBtnTextCancel: {
+    color: '#555',
+    fontWeight: 'bold',
+  },
+  modalBtnTextConfirm: {
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
+  successTitle: { 
+    fontSize: 22, 
+    fontWeight: 'bold', 
+    color: '#111', 
+    marginBottom: 8 
+  },
+  successDesc: { 
+    fontSize: 15, 
+    color: '#666', 
+    marginBottom: 25, 
+    textAlign: 'center' 
+  },
+  goToCouponBtn: {
+    backgroundColor: '#111', // 검정색 혹은 브랜드 컬러
+    width: '100%',
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  goToCouponBtnText: { 
+    color: '#FFF', 
+    fontWeight: 'bold', 
+    fontSize: 16 
+  },
+  closeTextBtn: { 
+    padding: 10 
+  },
+  closeText: { 
+    color: '#888', 
+    fontSize: 14, 
+    textDecorationLine: 'underline' 
   },
 });
 

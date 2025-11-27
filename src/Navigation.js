@@ -3,25 +3,23 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {View, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator, TouchableOpacity} from 'react-native';
+//--로그인 인증 auth사용
+import { useAuth } from '../AuthContext';
 //---로그인 스크린 import---
 import AuthScreen from './screens/Login/loginForm';
-//---스크린 import---
+//---하단 탭 import--- 기본적인 홈, 쿠폰샵, 프로필 화면 나옵니다.
 import Root from './router/TabIndex';
-
+//나머지 필요한 페이지 import--
 import MyCoupon from './screens/Coupon/MyCoupon';
 import MyGoal from './screens/Profile/MyGoal';
 import GoalSetting from './screens/Profile/GoalSetting';
+//--프로필 스크린 import--
 import AccountSetting from './screens/Profile/AccountSetting';
 import MyPage from './screens/Profile/MyPage';
 import CSpage from './screens/Profile/CSpage';
-import RewardHistory from './screens/Profile/RewardHistory';
-import CSwriting from './screens/Profile/CSwriting';
-import CSreading from './screens/Profile/CSreading';
-import { useAuth } from '../AuthContext';
+import { Ionicons } from '@expo/vector-icons';
 
-//--걸음 수 스크린은 일단 따로 표시
-import StepScreen from './screens/Home/pedometer';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,7 +52,9 @@ export default function AppNavigator(){
             <Stack.Screen
                 name="MyCoupon"
                 component={MyCoupon}
-                options={{title: '내 쿠폰함'}}
+                options={{title: '내 쿠폰함',
+                    headerShown: false,
+                }}
             />
             <Stack.Screen
                 name="MyGoal"
@@ -64,12 +64,14 @@ export default function AppNavigator(){
             <Stack.Screen
                 name="GoalSetting"
                 component={GoalSetting}
-                options={{title: '목표 설정'}}
+                options={{title: '목표 설정',
+                    headerShown: false,
+                }}
             />
             <Stack.Screen
                 name="AccountSetting"
                 component={AccountSetting}
-                options={{title: '아이디 및 비밀번호 관리'}}
+                options={{headerShown:  false}}
             />
             <Stack.Screen
               name="MyPage"
@@ -77,29 +79,10 @@ export default function AppNavigator(){
               options={{title: '나의 기록'}}
             />
             <Stack.Screen
-              name="RewardHistory"
-              component={RewardHistory}
-              options={{title: '리워드 히스토리'}}
-            />
-            <Stack.Screen
-              name="CSpage"
-              component={CSpage}
-              options={{title: '문의 게시판'}}
-            />
-            <Stack.Screen
-            name="CSwriting"
-            component={CSwriting}
+            name="CSpage"
+            component={CSpage}
             options={{title: '문의하기'}}
             />
-            <Stack.Screen
-            name='CSreading'
-            component={CSreading}
-            options={{title: '게시물'}}
-            />
-            <Stack.Screen
-            name='pedometer'
-            component={StepScreen}
-            options={{title:'걸음 수'}}/>
             </>
             ) : (
                 //--로그아웃인 상태

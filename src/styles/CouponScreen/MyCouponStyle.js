@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: '#868e96',
     borderRadius: 16,
     paddingVertical: 24,
     paddingHorizontal: 20,
@@ -21,18 +21,18 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'black',
+    color: '#fff',
     marginBottom: 16,
   },
   modalText: {
     fontSize: 16,
-    color: 'black',
+    color: '#fff',
     textAlign: 'center',
     marginBottom: 24,
   },
   modalSubtext:{
     fontSize: 14,
-    color: 'black',
+    color: '#fff',
     textAlign: 'center',
     marginBottom: 24,
   },
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   
   // --- "비밀번호 입력" 모달 스타일 추가 ---
   passwordInput: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#868e96',
     width: '100%',
     borderRadius: 8,
     paddingVertical: 12,
@@ -76,12 +76,12 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   modalButtonTextConfirm: {
-    color: '#FFFFFF',
+    color: '#FFF',
     fontWeight: 'bold',
     fontSize: 16,
   },
   modalButtonTextClose: {
-    color: 'blue',
+    color: 'black',
     fontWeight: 'bold',
     fontSize: 16,
   },
@@ -94,12 +94,19 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
-  headerTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#99a',
-    textAlign: 'center',
-    marginBottom: 24,
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+  },
+  icon: {
+    width: 50,
+    height: 50,
+    marginRight: 8,
+  },
+  text: {
+    fontSize: 15,
+    color: "#444",
   },
   couponListContainer: {},
   card: {

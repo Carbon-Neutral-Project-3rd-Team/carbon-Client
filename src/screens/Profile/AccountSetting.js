@@ -10,11 +10,13 @@ import {
   Alert,
   Button,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 import styles from '../../styles/ProfileScreen/AccountSetting';
 import { useAuth } from '../../../AuthContext';
 //목업 데이터 대신 임의의 사용자를 지정
 //실제론 서버에서 데이터를 받아야 함
-const App = () => {
+const App = ({navigation}) => {
 
   const { logout } = useAuth();
 
@@ -32,9 +34,31 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={styles.container.backgroundColor} />
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    <View style={styles.Defaultcontainer}>
+
+    <LinearGradient
+        colors={['#5a9cd0', '#F3FBF0', '#ffffff']}
+        style={styles.backgroundGradient}
+      />
+
+    <SafeAreaView style={{flex:1, paddingHorizontal:20}}>
+
+      <View style={{paddingVertical: 10,}}>
+        {/* 내가 만든 커스텀 Back 버튼 */}
+        <TouchableOpacity 
+          onPress={() => navigation.goBack()}
+          style={{
+            justifyContent: 'center',
+            width:40,
+            height: 40,
+            marginLeft:20,
+          }}
+        >
+          <Ionicons name="chevron-back" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
+     
+      <View style={styles.scrollViewContent}>
         
         {/* 1. 프로필 요약 카드 */}
         <View style={[styles.card, styles.profileSummaryCard]}>
@@ -60,16 +84,17 @@ const App = () => {
             <Text style={styles.value}>김*하</Text>
           </View>
         </View>
-        //--로그아웃 버튼--
-        <View style={styles.logoutButtonContainer}>
-          <Button
-          title="로그아웃"
-          onPress={handleLogout}
-          color="#e74c3c"/>
+        
+        <View style={{ marginTop: 30, paddingHorizontal: 20 }}> {/* 여백 확보 */}
+          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+            <Text style={styles.logoutButtonText}>로그아웃</Text>
+          </TouchableOpacity>
         </View>
 
-      </ScrollView>
+      </View>
     </SafeAreaView>
+
+    </View>
   );
 };
 

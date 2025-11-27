@@ -12,8 +12,10 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
-  Touchable
+  Touchable,
+
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/ProfileScreen/GoalSetting';
 
@@ -64,6 +66,14 @@ export default function App() {
  
   return (
     <TouchableWithoutFeedback onPress={()=> {Keyboard.dismiss()}}>
+
+      <View style={styles.DefaultContainer}>
+
+        <LinearGradient
+                colors={['#5a9cd0', '#F3FBF0', '#ffffff']}
+                style={styles.backgroundGradient}
+              />
+              
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="dark-content" />
       <View style={styles.container}>
@@ -110,6 +120,7 @@ export default function App() {
 
       </View>
     </SafeAreaView>
+    </View>
     </TouchableWithoutFeedback>
   );
 }

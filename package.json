@@ -14,8 +14,9 @@
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-navigation/native-stack": "^7.6.1",
     "babel": "^5.8.38",
-    "expo": "~54.0.20",
+    "expo": "54.0.23",
     "expo-constants": "~18.0.10",
+    "expo-linear-gradient": "~15.0.7",
     "expo-linking": "~8.0.8",
     "expo-router": "~6.0.14",
     "expo-sensors": "~15.0.7",
@@ -29,6 +30,7 @@
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
     "react-native-svg": "15.12.1",
+    "react-native-vector-icons": "^10.3.0",
     "zustand": "^5.0.8"
   },
   "private": true,

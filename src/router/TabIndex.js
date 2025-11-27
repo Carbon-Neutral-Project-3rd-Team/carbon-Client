@@ -23,10 +23,11 @@ const Root = () => {
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
               name='home'
-              style={{ color: focused ? "#5a9cd0" : "#000" }} 
+              style={{ color: focused ? "#3b82f6" : "#000" }} 
               size={24} 
             />
           ),
+          headerShown: false,
         }}
             />
             <Tab.Screen
@@ -37,10 +38,11 @@ const Root = () => {
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons
               name='card-multiple'
-              style={{ color: focused ? "#5a9cd0" : "#000" }} 
+              style={{ color: focused ? "#3b82f6" : "#000" }} 
               size={24} 
             />
           ),
+          headerShown: false,
         }}
             />
             <Tab.Screen
@@ -51,10 +53,11 @@ const Root = () => {
           tabBarIcon: ({ focused, color, size }) => (
             <AntDesign
               name='profile'
-              style={{ color: focused ? "#5a9cd0" : "#000" }} 
+              style={{ color: focused ? "#3b82f6" : "#000" }} 
               size={24} 
             />
           ),
+          headerShown: false,
         }}
             />
         </Tab.Navigator>

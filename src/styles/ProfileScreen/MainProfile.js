@@ -1,36 +1,259 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f6f8', // 이미지 배경색
+    backgroundColor: '#F9FAFB', // 전체 배경: 아주 연한 회색
   },
-  scrollContainer: {
-    padding: 20,
+  backgroundGradient: { 
+    position: 'absolute', 
+    width: '100%', 
+    height: '50%', 
   },
-  // --- 헤더 ---
   header: {
-    marginBottom: 20,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: '#F9FAFB',
   },
   headerTitle: {
-    fontSize: 28,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#000',
+    color: '#111',
   },
-  headerSubtitle: {
+  headerRightButton: {
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+    borderRadius: 15,
+    backgroundColor: '#FFF',
+  },
+  headerRightText: {
+    fontSize: 12,
+    color: '#666',
+  },
+  scrollContent: {
+    paddingBottom: 40,
+  },
+  // 상단 텍스트
+  topTextContainer: {
+    paddingHorizontal: 24,
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  badge: {
+    backgroundColor: '#EFF6FF', // 연한 파랑
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    marginBottom: 8,
+  },
+  badgeText: {
+    fontSize: 13,
+    color: '#666',
+  },
+  badgeBold: {
+    color: '#3B82F6', // 파란색 강조
+    fontWeight: 'bold',
+  },
+  greetingTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#111',
+    lineHeight: 32,
+  },
+  // 메인 카드 래퍼 (이미지 겹침 처리용)
+  cardWrapper: {
+    paddingHorizontal: 20,
+    marginTop: 20, 
+    zIndex: 1,
+  },
+  floatingStampImage: {
+    position: 'absolute',
+    top: -50, // 카드 위로 튀어나오게
+    right: 10,
+    width: 140,
+    height: 140,
+    borderRadius: 16,
+    zIndex: 10, // 카드보다 위에 표시
+    resizeMode: 'contain',
+    // 실제 이미지가 없다면 임시로 회전
+    transform: [{ rotate: '15deg' }] 
+  },
+  mainCard: {
+    backgroundColor: '#FFF',
+    borderRadius: 24,
+    padding: 24,
+    paddingTop: 30,
+    // 그림자
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 5,
+  },
+  // 노란 점 장식 (디자인 요소)
+  scoreSection: {
+    marginBottom: 25,
+  },
+  scoreLabel: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 4,
+  },
+  scoreRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  scoreNumber: {
+    fontSize: 42,
+    fontWeight: 'bold',
+    color: '#3B82F6', // 밝은 파랑
+  },
+  scoreUnit: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#3B82F6',
+    marginBottom: 8,
+    marginLeft: 2,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    marginBottom: 25,
+  },
+  statItem: {
+    marginRight: 30,
+  },
+  statLabel: {
+    fontSize: 13,
+    color: '#6B7280', // 회색
+    marginBottom: 4,
+  },
+  statValue: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  divider: {
+    width: 1,
+    height: '100%',
+    backgroundColor: '#E5E7EB',
+    marginRight: 30,
+  },
+  innerBanner: {
+    backgroundColor: '#F0F9FF', // 아주 연한 하늘색 배경
+    borderRadius: 16,
+    padding: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  innerBannerLabel: {
+    fontSize: 13,
+    color: '#6B7280',
+    marginBottom: 2,
+  },
+  innerBannerValue: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#111',
+  },
+  innerBannerTotal: {
+    fontSize: 14,
+    fontWeight: 'normal',
+    color: '#9CA3AF',
+  },
+  innerBannerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  miniIconCircle: {
+    width: 32,
+    height: 32,
+    backgroundColor: '#FFF',
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  // 하단 리스트
+  listSection: {
+    paddingHorizontal: 24,
+    marginTop: 30,
+  },
+  sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#000',
-    marginTop: 4,
+    color: '#111',
+    marginBottom: 16,
   },
-  // --- 공통 카드 스타일 ---
-  card: {
+  listItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  iconBox: {
+    width: 48,
+    height: 48,
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+  itemInfo: {
+    flex: 1,
+  },
+  itemTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#111',
+    marginBottom: 4,
+  },
+  itemDesc: {
+    fontSize: 13,
+    color: '#6B7280',
+    lineHeight: 18,
+  },
+  recordValue:{
+    fontSize:25,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  unitValue:{
+    fontSize: 15,
+    fontWeight:'600',
+  },
+  actionButton: {
+    backgroundColor: '#374151', // 진한 회색/검정
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+  },
+  actionButtonText: {
+    color: '#FFF',
+    fontSize: 13,
+    fontWeight: 'bold',
+  },
+  cardContainer: {
     backgroundColor: '#ffffff',
     borderRadius: 16,
-    padding: 20,
     marginBottom: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     // 그림자 (iOS)
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -39,70 +262,27 @@ const styles = StyleSheet.create({
     // 그림자 (Android)
     elevation: 5,
   },
-  // --- 1. 쿠폰함 버튼 카드 ---
-  couponButton: {
-    paddingVertical: 16,
-    alignItems: 'center',
+  menuItem: {
+  alignItems: 'center', // 세로 중앙 정렬
+  paddingVertical: 16, // 상하 여백
+  
+  borderBottomWidth: 1, // 구분선
+  borderBottomColor: '#F0F0F0',
   },
-  couponButtonText: {
-    fontSize: 16,
-    color: '#5a9cd0', // 이미지의 파란색 텍스트
-    fontWeight: '600',
-  },
-  // --- 2. 통계 카드 ---
-  usernameText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#5a9cd0', // 이미지의 파란색 텍스트
-    marginBottom: 20,
-  },
-  statsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  statBox: {
-    flex: 1, // 3개 항목이 1:1:1 비율로 공간 차지
-    alignItems: 'center',
-  },
-  statTitle: {
-    fontSize: 14,
-    fontWeight: '400',
-    color: '#6cc197',
-    marginBottom: 8,
-  },
-  statValue: {
-    fontSize: 22,
+  menuLabel: {
+    fontSize: 13,
     fontWeight: 'bold',
-    color: '#000',
-  },
-  statUnit: {
-    fontSize: 14,
     color: '#333',
-    marginLeft: 4,
+    margin: 12,
   },
-  verticalDivider: {
-    borderLeftWidth: 1,
-    borderColor: '#eee',
+  topSection:{
+    backgroundColor: '#f9fafb',
+    paddingBottom: 30,
   },
-  // --- 3. 설정 리스트 카드 ---
-  menuCard: {
-    paddingHorizontal: 0, // 내부 리스트가 카드 끝까지 닿도록
-    paddingVertical: 0,
-  },
-  listItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 18,
-    paddingHorizontal: 20,
-    // 리스트 항목 사이에 구분선 (마지막 항목 제외)
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  listItemText: {
-    fontSize: 16,
-    color: '#333',
+  bottomSection:{
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingTop: 30,
   },
 });
 

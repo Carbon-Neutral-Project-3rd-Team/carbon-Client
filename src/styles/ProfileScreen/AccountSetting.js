@@ -1,17 +1,32 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  Defaultcontainer:{
+    flex: 1,
+    backgroundColor: "#FFF",
+  },
+  backgroundGradient: { position: 'absolute', 
+    width: '100%', 
+    height: '50%',
+  top: 0,
+  left: 0,
+  right:0, 
+},
   // 기본 화면 스타일
   container: {
     flex: 1,
     backgroundColor: '#f0f2f5', // 앱 배경색
+    padding: 20,
   },
   scrollViewContent: {
     padding: 20, // 화면 전체의 여백
   },
   logoutButtonContainer: {
-    marginTop: 50, // 다른 컴포넌트와 간격을 줍니다.
-    paddingHorizontal: 20, // 버튼 좌우 여백
+    marginTop: 10, // 다른 컴포넌트와 간격을 줍니다.
+    paddingHorizontal: 50, // 버튼 좌우 여백
+    backgroundColor: "#3b82f6",
+    borderRadius: 16,
+    alignSelf: 'center',
   },
   // 카드 공통 스타일
   card: {
@@ -98,6 +113,26 @@ const styles = StyleSheet.create({
     color: '#aaa',
     fontWeight: 'bold',
   },
+  // 스타일 코드
+  logoutButton: {
+    backgroundColor: "#FF8A80", // 또는 텍스트와 같은 #e6716a 계열
+    paddingVertical: 14,
+    width: '100%',         // 혹은 width: 200 처럼 고정
+    borderRadius: 12,      // 카드 모서리와 비슷하게 둥글게
+    alignItems: 'center',
+  
+  // 카드와 비슷한 부드러운 그림자
+    shadowColor: "#FF8A80",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  logoutButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '700',
+  }
 });
 
 export default styles;

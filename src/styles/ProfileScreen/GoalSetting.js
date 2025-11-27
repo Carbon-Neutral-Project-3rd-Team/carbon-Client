@@ -1,8 +1,19 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+  DefaultContainer:{
+    flex:1,
+    backgroundColor:'#ffffff',
+  },
+  backgroundGradient: { position: 'absolute', 
+    width: '100%', 
+    height: '50%',
+    top: 0,
+    left: 0,
+    right:0, 
+  },
     saveButton: {
-    backgroundColor: '#007aff',
+    backgroundColor: '#5a9cd0',
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 12,
