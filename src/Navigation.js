@@ -16,8 +16,6 @@ import MyGoal from './screens/Profile/MyGoal';
 import GoalSetting from './screens/Profile/GoalSetting';
 //--프로필 스크린 import--
 import AccountSetting from './screens/Profile/AccountSetting';
-import MyPage from './screens/Profile/MyPage';
-import CSpage from './screens/Profile/CSpage';
 import { Ionicons } from '@expo/vector-icons';
 
 
@@ -72,16 +70,6 @@ export default function AppNavigator(){
                 name="AccountSetting"
                 component={AccountSetting}
                 options={{headerShown:  false}}
-            />
-            <Stack.Screen
-              name="MyPage"
-              component={MyPage}
-              options={{title: '나의 기록'}}
-            />
-            <Stack.Screen
-            name="CSpage"
-            component={CSpage}
-            options={{title: '문의하기'}}
             />
             </>
             ) : (
