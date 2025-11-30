@@ -15,7 +15,8 @@ const CARD_WIDTH = width * 0.75; // 화면의 75% 크기 (다음 카드가 보�
 const CARD_GAP = 20; // 카드 사이 간격
 const SNAP_INTERVAL = CARD_WIDTH + CARD_GAP; // 스크롤이 멈출 간격
 
-// 더미 데이터 (여러 장의 카드를 보여주기 위함)
+// 임시 더미 데이터입니다.
+//서버 연동 시 실제 데이터로 교체 필요
 const CARD_DATA = [
   {
     id: 1,
@@ -29,17 +30,17 @@ const CARD_DATA = [
   {
     id: 2,
     title: '기간 한정 이벤트',
-    brand: '더 스토리',
-    desc: '아메리카노 1+1 쿠폰',
+    brand: '카페 더 스토리',
+    desc: '사이즈업 + 원두 선택',
     price: 1000,
     bgColor: '#FFF8E1', // 연한 노랑
     btnColor: '#FFB300', // 짙은 노랑 (알다 스타일)
   },
   {
     id: 3,
-    title: '제휴 할인',
-    brand: 'CGV 영화관',
-    desc: '3천원 즉시 할인',
+    title: '누적 이벤트',
+    brand: '카페 더 스토리',
+    desc: '아메리카노 1+1 쿠폰',
     price: 2000,
     bgColor: '#FFEBEE', // 연한 빨강
     btnColor: '#E53935', // 빨강
@@ -91,6 +92,7 @@ export default function App({navigation}) {
 
   const [userPoints, setUserPoints] = useState(1523); //유저가 현재 가지고 있는 point
   const [userCoupons, setUserCoupons] = useState(2); //유저가 현재 가지고 있는 쿠폰 수
+  // 실제 앱에서는 서버에서 유저 정보를 받아와서 설정해야 합니다.
 
 
   return (
@@ -109,11 +111,11 @@ export default function App({navigation}) {
                 <View style={styles.badgeContainer}>
                   <Text style={styles.badgeText}>👣 인하대학교</Text>
                 </View>
-                <Text style={styles.userName}>김인하 님</Text>
+                <Text style={styles.userName}>김인하 님</Text> //사용자 이름 연동
                 <Text style={styles.subText}>오늘도 많이 걸으셨나요?</Text>
                 <View style={styles.statsRow}>
-                    <Text style={styles.pointText}>ⓟ {userPoints}P</Text>
-                    <Text style={styles.ticketText}> 🎟 {userCoupons}장</Text>
+                    <Text style={styles.pointText}>ⓟ {userPoints}P</Text> //사용자 누적 포인트 연동
+                    <Text style={styles.ticketText}> 🎟 {userCoupons}장</Text> //사용자 누적 쿠폰 개수 연동
                 </View>
             </View>
         </View>
@@ -133,11 +135,11 @@ export default function App({navigation}) {
           >
             {CARD_DATA.map((item, index) => {
 
-              const isAffordable = userPoints >= item.price;
+              const isAffordable = userPoints >= item.price;  //사용자 포인트와 쿠폰 포인트를 비교시켜 버튼 활성화, 비활성화 결정
 
               return(
               <View 
-                key={item.id} 
+                key={item.id}   //쿠폰 리스트 조회
                 style={[
                   styles.cardItem, 
                   { 
@@ -151,7 +153,7 @@ export default function App({navigation}) {
                   <Text style={styles.cardTitle}>{item.title}</Text>
                   <Text style={styles.cardBrand}>{item.brand}</Text>
                   <Text style={styles.cardDesc}>{item.desc}</Text>
-                  <Text style={{marginTop: 5, fontSize: 16, fontWeight: 'bold', color: '#555'}}>
+                  <Text style={{marginTop: 5, fontSize: 25, fontWeight: 'bold', color: '#aa0b0bff'}}>
                         {item.price.toLocaleString()}P
                     </Text>
                 </View>
@@ -168,7 +170,7 @@ export default function App({navigation}) {
                   ]}
                 >
                 <Text style={styles.exchangeButtonText}>
-                  {isAffordable ? '교환하기' : '포인트 부족'}
+                  {isAffordable ? '교환하기' : '포인트 부족'} 
                 </Text>
                 
                 </TouchableOpacity>
@@ -218,9 +220,9 @@ export default function App({navigation}) {
                   <Text style={styles.modalBrand}>{selectedCard.brand}</Text>
                   <Text style={styles.modalDesc}>{selectedCard.desc}</Text>
                   <Text style={[styles.modalPoint, {color: selectedCard.btnColor}]}>
-                     -{selectedCard.point} 차감
-                  </Text>
-                </View>
+                     -{selectedCard.point} 차감  
+                  </Text> 
+                </View> //선택된 쿠폰 포인트 연동
 
                 <View style={styles.modalButtons}>
                   {/* 취소 버튼 */}

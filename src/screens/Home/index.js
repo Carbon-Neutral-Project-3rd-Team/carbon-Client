@@ -1,185 +1,183 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Image, 
+  SafeAreaView, 
+  TouchableOpacity, 
+  StatusBar,
+  Dimensions,
+  Platform,
+  AppState,
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; 
+import { useVideoPlayer, VideoView } from 'expo-video';
 import { startPedometer, usePedometerStore } from '../Home/PedometerLogic';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
-const TopCircleDisplay = () =>{
+const { width, height } = Dimensions.get('window');
+
+const videoSource = require('../../../assets/HomeVideo.mp4');
+
+export default function HomeScreen() {
+  
+  // 날씨 멘트 상태 (나중에 API로 연동 가능)
+  const [weatherMent, setWeatherMent] = useState("비가 오네");
 
   const steps = usePedometerStore((s) => s.steps);
 
   const GOAL = 100; //임시 목표 걸음 수 입니다.
 
-  const fillpercent = (steps / GOAL) * 100;
+  const fillpercent = parseInt((steps / GOAL) * 100);
 
   useEffect(() => {
-      startPedometer();
-    }, []);
+        startPedometer();
+      }, []);
 
-    return(
-      <View style={styles.topCircleContainer}>
-      <AnimatedCircularProgress
-      size={100}
-      width={10}
-      fill={fillpercent}
-      tintColor='#5a9cd0'
-      backgroundColor='#fff'
-      
-      rotation={0}
-      >
-        {
-          (fill) => (
-            <View style={styles.topCircle}>
-              <Text style={styles.CircleInfoTitle}>
-                {steps}
-                <Text style={styles.CircleValue}>보</Text>
-              </Text>
-            </View>
-          )
-        }
-      </AnimatedCircularProgress>
-      </View>
-    );
-}
+  const player = useVideoPlayer(videoSource, player => {
+    player.loop = true;   // 무한 반복
+    player.play();        // 자동 재생
+    player.muted = true;  // 소리 끔 (배경음악 없으면 필수)
+  });
 
-const App = () => {
-  const [status, setStatus] = useState('좋음'); // 상태 관리
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (nextAppState) => {
+      // 앱이 'active' 상태(화면으로 돌아옴)가 되었고, 플레이어가 준비된 상태라면
+      if (nextAppState === 'active') {
+        player.play(); // 다시 재생!
+      }
+    });
+
+    // 컴포넌트가 사라질 때 리스너 정리 (메모리 누수 방지)
+    return () => {
+      subscription.remove();
+    };
+  }, [player]);
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      
-      {/* 1. 상단 이미지 영역 (화면의 약 55~60% 차지) */}
-      <ImageBackground source={require('../../../assets/induk2.png')} style={styles.topSection} resizeMode="cover">
+      <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
 
-      </ImageBackground>
+      {/* 1. 배경 GIF (화면 전체 꽉 채우기) */}
+      <VideoView
+        style={styles.backgroundVideo}
+        player={player}
+        nativeControls={false} // 재생바 숨기기
+        contentFit="cover"     // 화면 꽉 채우기 (resizeMode="cover"와 동일)
+      />
 
-      {/* 2. 중단 상태 표시줄 (구분선 역할) */}
-      <View style={styles.statusBar}>
-        <Ionicons name="happy-outline" size={24} color="#333" />
-        <Text style={styles.statusText}>인덕이의 상태 : {status}</Text>
-      </View>
-
-      {/* 3. 하단 정보 영역 (흰색 배경, 나머지 공간 차지) */}
-      <View style={styles.bottomSection}>
+      <SafeAreaView style={styles.safeArea}>
         
-        <View style={styles.statsRow}>
-          {/* 왼쪽: 오늘 걸음 수 */}
-          <View style={styles.statItem}>
-            <Text style={styles.statLabel}>오늘 걸음 수</Text>
-            <TopCircleDisplay/>
+        {/* 2. 상단 상태바 영역 (걸음수, 포인트, 에너지) */}
+        <View style={styles.topBarContainer}>
+
+          {/* 중앙 상태 정보들 */}
+          <View style={styles.statusContainer}>
+            <View style={styles.statusBadge}>
+              <Ionicons name="footsteps" size={14} color="#4ADE80" />
+              <Text style={styles.statusText}>{steps}</Text>
+            </View>
+            <View style={styles.statusBadge}>
+              <Ionicons name="trophy" size={14} color="#FACC15" />
+              <Text style={styles.statusText}>2</Text>
+            </View>
+            <View style={styles.statusBadge}>
+              <Ionicons name="flash" size={14} color="#60A5FA" />
+              <Text style={styles.statusText}>{fillpercent}%</Text>
+            </View>
           </View>
 
-          {/* 오른쪽: 내 포인트 */}
-          <View style={styles.statItem}>
-            <Text style={styles.statLabel}>내 포인트</Text>
-            <Text style={styles.statValue}>5,240</Text>
-          </View>
+          {/* 오른쪽 옷장 버튼 (여기서 위치를 잡아줍니다) */}
+          <TouchableOpacity style={styles.wardrobeButton}>
+             <Ionicons name="shirt-outline" size={24} color="#7C3AED" />
+          </TouchableOpacity>
         </View>
 
-      </View>
+        {/* 3. 메인 캐릭터 및 말풍선 영역 */}
+        <View style={styles.centerContainer}>
+          
+        </View> 
+      </SafeAreaView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    //backgroundColor: '#333', // 이미지가 로드되기 전 배경색
+    backgroundColor: 'transparent',
   },
-  
-  // --- 1. 상단 이미지 영역 스타일 ---
-  topSection: {
-    flex: 1.3, // 비율을 높여서 이미지가 화면을 더 많이 차지하게 함
-    width: '100%',
+  // 배경 이미지를 절대 위치로 설정하여 뒤에 깝니다.
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: width,
+    height: height,
+    // zIndex는 필요 없지만, 혹시 가리면 -1 줘보세요. 보통 맨 위에 쓰면 알아서 깔립니다.
   },
   safeArea: {
     flex: 1,
   },
-  menuButton: {
-    marginLeft: 20,
-    marginTop: 10,
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-  },
-
-  // --- 2. 중단 상태 바 스타일 ---
-  statusBar: {
-    height: 70, // 고정 높이
-    backgroundColor: '#fff',
-    flexDirection: 'row', // 가로 정렬
+  
+  /* 상단 상태바 스타일 */
+  topBarContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center', // 세로 중앙 정렬
-    paddingHorizontal: 30,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0', // 연한 구분선
-    // 그림자 효과 (이미지 위로 살짝 떠있는 느낌)
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: -2 }, // 위쪽으로 그림자
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
-    elevation: 5,
-    zIndex: 1,
+    justifyContent: 'flex-end',
+    paddingTop: 20,
+    width: '100%',
+  },
+  statusContainer: {
+    flexDirection: 'row',
+    gap: 8, // 아이템 사이 간격 (RN 0.71+)
+    marginRight: 20,
+  },
+  statusBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // 반투명 흰색 배경
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    borderRadius: 20,
+    gap: 4,
   },
   statusText: {
-    fontSize: 18,
+    color: 'black',
+    fontSize: 12,
     fontWeight: 'bold',
-    marginLeft: 10,
-    color: '#333',
+    marginLeft: 4,
   },
-
-      topCircleContainer: {
-        paddingVertical: 40,
-        alignItems: 'center',
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
-        elevation: 10,
-    },
-    topCircle: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
-      height: '100%',
-  },
-  CircleInfoTitle: {
-    fontSize: 25,
-    color: '#4caf50',
-    fontWeight: 'bold',
-    },
-    CircleValue:{
-      fontSize: 20,
-      color: '#666',
-    },
-
-  // --- 3. 하단 정보 영역 스타일 ---
-  bottomSection: {
-    flex: 0.7, // 하단 공간 비율 (상단보다 작게)
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start', // 위쪽부터 내용 채움
-    paddingTop: 40, // 상태바와의 간격
-  },
-  statsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around', // 좌우 균등 배분
+  
+  /* 옷장 버튼 스타일 */
+  wardrobeButton: {
+   backgroundColor: 'white',
+    width: 45,
+    height: 45,
+    borderRadius: 12,
+    justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#E9D5FF', 
+    // marginTop: 40, <-- 삭제함 (배지와 높이 맞춤)
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    marginRight: 20,
   },
-  statItem: {
-    alignItems: 'center', // 텍스트 중앙 정렬
+
+  /* 중앙 캐릭터 영역 */
+  centerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 50, // 하단 네비게이션 바 공간 고려해서 조금 위로
   },
-  statLabel: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
-  },
-  statValue: {
-    fontSize: 32, // 숫자 크게
-    fontWeight: 'bold',
-    color: '#4CAF50', // 초록색 포인트 컬러
+  characterImage: {
+    width: 250, // 오리 크기 조절
+    height: 250,
   },
 });
-
-export default App;

@@ -3420,6 +3420,11 @@ expo-asset@~12.0.9:
     "@expo/image-utils" "^0.8.7"
     expo-constants "~18.0.9"
 
+expo-av@~16.0.7:
+  version "16.0.7"
+  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-16.0.7.tgz#51668b335e3a460ca712a281d7138341119ebe26"
+  integrity sha512-QReef6/RYuZ4GekTcZZw5zY26pcPOmHqK6LMgFlPhnsT0ga97HJrgMc63pvIiojDP+q4oIv24g+QPD8ljZu4XQ==
+
 expo-constants@~18.0.10, expo-constants@~18.0.8, expo-constants@~18.0.9:
   version "18.0.10"
   resolved "https://registry.npmjs.org/expo-constants/-/expo-constants-18.0.10.tgz"
@@ -3535,6 +3540,11 @@ expo-status-bar@~3.0.8:
   integrity sha512-L248XKPhum7tvREoS1VfE0H6dPCaGtoUWzRsUv7hGKdiB4cus33Rc0sxkWkoQ77wE8stlnUlL5lvmT0oqZ3ZBw==
   dependencies:
     react-native-is-edge-to-edge "^1.2.1"
+
+expo-video@~3.0.14:
+  version "3.0.14"
+  resolved "https://registry.yarnpkg.com/expo-video/-/expo-video-3.0.14.tgz#aaf3dfefbc3c202f1267d8599aa2d3bf48a45ad1"
+  integrity sha512-k4vz9mUzrgUdVI0IKesWzkYCJw0yc2AKioN/riLg+X/dyR/GG6ej03nzqKd0KmPjtG6FcJEA0D/BuxCtU4OH1Q==
 
 expo@54.0.23:
   version "54.0.23"

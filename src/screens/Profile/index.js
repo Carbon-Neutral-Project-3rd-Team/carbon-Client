@@ -19,7 +19,7 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
 const ProfileScreen = ({navigation}) => {
 
-  const googleFormUrl = "https://www.google.com";
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeXZmkceoj7CZIsJWkZE11sQ2D9I-O4C7t2jBYyuxaB6LFBMw/viewform?usp=dialog";
 
   const openUrl = async () => {
     try {
