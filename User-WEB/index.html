@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>간단한 표 - React</title>
+  <style>
+    body { margin:0; padding:20px; background:#f7f7f8; color:#111 }
+    .table-container { background:white; border-radius:8px; padding:16px; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+    .toolbar { display:flex; gap:12px; align-items:center; margin-bottom:12px; }
+    .toolbar input { padding:8px 10px; border:1px solid #ddd; border-radius:6px; min-width:200px }
+    .simple-table { width:100%; border-collapse:collapse; }
+    .simple-table th, .simple-table td { text-align:left; padding:10px 8px; border-bottom:1px solid #eee }
+    .simple-table th { background:#fafafa; font-weight:600 }
+    .simple-table tbody tr:hover { background:#fcfcff }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + ReactDOM (UMD builds) -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel to enable JSX in the browser (for simple demos) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<!--인라인으로 실행 -->
+  <script type="text/babel">
+    const { useState, useMemo } = React;
+
+    function SimpleTable({ data, columns }) {
+      const [query, setQuery] = useState("");
+
+      const filtered = useMemo(() => {
+        const q = query.trim().toLowerCase();
+        if (!q) return data;
+        return data.filter(row =>
+          columns.some(col => String(row[col.accessor]).toLowerCase().includes(q))
+        );
+      }, [query, data, columns]);
+
+      return (
+        <div className="table-container">
+          <div className="toolbar">
+            <input
+              placeholder="Search..."
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+            />
+          </div>
+          <table className="simple-table">
+            <thead>
+              <tr>
+                {columns.map(col => (
+                  <th key={col.accessor}>{col.header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((row, idx) => (
+                <tr key={idx}>
+                  {columns.map(col => (
+                    <td key={col.accessor}>{row[col.accessor]}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    function App() {
+      const columns = [
+        { header: "ID", accessor: "id" },
+        { header: "Email", accessor: "email" },
+        {header:"총 걸음 수", accessor:"totalSteps" },
+        {header:"최근 일주일 걸음 수", accessor:"stepsIn7Days" },
+        {header: "최근 30일 걸음 수", accessor:"stepsIn30Days" },
+        {header: "누적 포인트", accessor:"totalPoints" },
+      ];
+
+      const [data] = useState([             // 샘플 데이터
+        { id: "inha", email: "inha@example.com", 
+        totalSteps: 3000, stepsIn7Days: 21000,
+        stepsIn30Days: 90000, totalPoints: 1500
+        },
+
+        { id: "induk", email: "inha@example.com", 
+        totalSteps: 3000, stepsIn7Days: 21000,
+        stepsIn30Days: 90000, totalPoints: 1500
+        },
+
+        { id: "home", email: "inha@example.com", 
+        totalSteps: 3000, stepsIn7Days: 21000,
+        stepsIn30Days: 90000, totalPoints: 1500
+        },
+
+        { id: "go", email: "inha@example.com", 
+        totalSteps: 3000, stepsIn7Days: 21000,
+        stepsIn30Days: 90000, totalPoints: 1500
+        },
+      ]);
+
+      return (
+        <div style={{ padding: 20, fontFamily: "Segoe UI, Roboto, Arial" }}>
+          <h2>유저 데이터 조회</h2>
+          <SimpleTable data={data} columns={columns} />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
