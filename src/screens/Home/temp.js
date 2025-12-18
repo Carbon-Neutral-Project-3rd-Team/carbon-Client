@@ -10,7 +10,7 @@ const TopCircleDisplay = () =>{
 
   const GOAL = 100; //임시 목표 걸음 수 입니다.
 
-  const fillpercent = (steps / GOAL) * 100;
+  
 
   useEffect(() => {
       startPedometer();

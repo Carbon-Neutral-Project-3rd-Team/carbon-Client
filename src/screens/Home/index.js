@@ -14,12 +14,13 @@ import {
 import { Ionicons } from '@expo/vector-icons'; 
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { startPedometer, usePedometerStore } from '../Home/PedometerLogic';
+import styles from '../../styles/HomeScreen/Home';
 
 const { width, height } = Dimensions.get('window');
 
-const videoSource = require('../../../assets/HomeVideo.mp4');
+const videoSource = require('../../../assets/HomeVideo_final.mp4');
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   
   // 날씨 멘트 상태 (나중에 API로 연동 가능)
   const [weatherMent, setWeatherMent] = useState("비가 오네");
@@ -88,7 +89,8 @@ export default function HomeScreen() {
           </View>
 
           {/* 오른쪽 옷장 버튼 (여기서 위치를 잡아줍니다) */}
-          <TouchableOpacity style={styles.wardrobeButton}>
+          <TouchableOpacity style={styles.wardrobeButton}
+          onPress={() => {navigation.navigate("FittingRoom")}}>
              <Ionicons name="shirt-outline" size={24} color="#7C3AED" />
           </TouchableOpacity>
         </View>
