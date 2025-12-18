@@ -1,118 +1,84 @@
-import { StyleSheet} from "react-native";
+import {StyleSheet, Dimensions} from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f6f8',
+    //backgroundColor: '#333', // 이미지가 로드되기 전 배경색
+    backgroundColor: 'transparent',
   },
-    topCircleContainer: {
-        paddingVertical: 40,
-        alignItems: 'center',
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
-        elevation: 10,
-    },
-    topCircle: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
-      height: '100%',
+  // 배경 이미지를 절대 위치로 설정하여 뒤에 깝니다.
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: width,
+    height: height,
+    // zIndex는 필요 없지만, 혹시 가리면 -1 줘보세요. 보통 맨 위에 쓰면 알아서 깔립니다.
   },
-  CircleInfoTitle: {
-    fontSize: 25,
-    color: 'black',
-    fontWeight: 'bold',
-    },
-    CircleValue:{
-      fontSize: 20,
-      color: '#666',
-    },
-  cardContainer: {
-    padding:20, // 스크롤 뷰 내부에 여백
-    justifyContent: 'flex-end',
+  safeArea: {
     flex: 1,
   },
-  // --- 공통 카드 스타일 ---
-  card: {
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 20,
-    width: '100%',
-    alignSelf: 'center',
-    marginBottom: 20,
-    // 그림자 효과 (iOS)
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    // 그림자 효과 (Android)
-    elevation: 5,
-  },
-  row: {
+  
+  /* 상단 상태바 스타일 */
+  topBarContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around', // 내부 요소들을 균등하게 배치
     alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingTop: 20,
+    width: '100%',
   },
-  // --- 1. 목표/포인트 카드 ---
-  infoBox: {
-    alignItems: 'center', // 텍스트 중앙 정렬
-    flex: 1, // 공간을 균등하게 차지
+  statusContainer: {
+    flexDirection: 'row',
+    gap: 8, // 아이템 사이 간격 (RN 0.71+)
+    marginRight: 20,
   },
-  infoTitle: {
-    fontSize: 14,
+  statusBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // 반투명 흰색 배경
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    borderRadius: 20,
+    gap: 4,
+  },
+  statusText: {
+    color: 'black',
+    fontSize: 12,
     fontWeight: 'bold',
-    color: '#6cc197',
-    marginBottom: 8,
+    marginLeft: 4,
   },
-  infoValue: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#000',
+  
+  /* 옷장 버튼 스타일 */
+  wardrobeButton: {
+   backgroundColor: 'white',
+    width: 45,
+    height: 45,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#E9D5FF', 
+    // marginTop: 40, <-- 삭제함 (배지와 높이 맞춤)
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    marginRight: 20,
   },
-  // --- 2. 쿠폰함 버튼 카드 ---
-  couponButton: {
-    paddingVertical: 16,
-    alignItems: 'center', // 텍스트 중앙 정렬
+
+  /* 중앙 캐릭터 영역 */
+  centerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 50, // 하단 네비게이션 바 공간 고려해서 조금 위로
   },
-  couponButtonText: {
-    fontSize: 16,
-    color: '#5a9cd0', // 이미지의 색상과 유사하게
-    fontWeight: '600',
-  },
-  // --- 3. 활동 카드 ---
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#e6716a',
-  },
-  activityBox: {
-    flex: 1, // 3개의 박스가 공간을 1:1:1로 나눠 가짐
-    alignItems: 'center', // 텍스트 중앙 정렬
-  },
-  activityTitle: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#6cc197',
-    marginBottom: 8,
-  },
-  activityValue: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#000',
-  },
-  unit: {
-    fontSize: 14,
-    color: '#333',
-    marginLeft: 4, // 숫자와 단위 사이 간격
-  },
-  verticalDivider: {
-    borderLeftWidth: 1, // 수직 구분선
-    borderColor: '#eee', // 연한 회색
+  characterImage: {
+    width: 250, // 오리 크기 조절
+    height: 250,
   },
 });
 

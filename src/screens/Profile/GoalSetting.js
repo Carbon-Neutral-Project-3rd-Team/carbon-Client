@@ -18,12 +18,13 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/ProfileScreen/GoalSetting';
+import { Ionicons } from '@expo/vector-icons';
 
 const CALORIE_KEY = '@my_calorie_goal';
 const STEP_KEY = '@my_step_goal';
 
 
-export default function App() {
+export default function App({navigation}) {
   // 입력값을 관리하기 위한 state
   const [calorieGoal, setCalorieGoal] = useState('');
   const [stepGoal, setStepGoal] = useState('');
@@ -75,6 +76,22 @@ export default function App() {
               />
               
     <SafeAreaView style={styles.safeArea}>
+
+      <View style={{paddingVertical: 10,}}>
+        {/* 내가 만든 커스텀 Back 버튼 */}
+        <TouchableOpacity 
+          onPress={() => navigation.goBack()}
+          style={{
+            justifyContent: 'center',
+            width:40,
+            height: 40,
+            marginLeft:20,
+          }}
+        >
+          <Ionicons name="chevron-back" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
+
       <StatusBar barStyle="dark-content" />
       <View style={styles.container}>
         

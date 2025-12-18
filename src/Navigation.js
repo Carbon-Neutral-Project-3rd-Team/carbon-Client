@@ -11,6 +11,7 @@ import AuthScreen from './screens/Login/loginForm';
 //---하단 탭 import--- 기본적인 홈, 쿠폰샵, 프로필 화면 나옵니다.
 import Root from './router/TabIndex';
 //나머지 필요한 페이지 import--
+import FittingRoom from './screens/Home/FittingRoom';
 import MyCoupon from './screens/Coupon/MyCoupon';
 import MyGoal from './screens/Profile/MyGoal';
 import GoalSetting from './screens/Profile/GoalSetting';
@@ -71,6 +72,11 @@ export default function AppNavigator(){
                 component={AccountSetting}
                 options={{headerShown:  false}}
             />
+            <Stack.Screen
+                name="FittingRoom"
+                component={FittingRoom}
+                options={{headerShown:  false}}
+                />
             </>
             ) : (
                 //--로그아웃인 상태
