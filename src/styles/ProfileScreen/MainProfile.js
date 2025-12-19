@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     zIndex: 10, // 카드보다 위에 표시
     resizeMode: 'contain',
     // 실제 이미지가 없다면 임시로 회전
-    transform: [{ rotate: '15deg' }] 
+    transform: [{ rotate: '10deg' }] 
   },
   mainCard: {
     backgroundColor: '#FFF',

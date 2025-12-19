@@ -28,8 +28,8 @@ const CARD_DATA = [
     brand: '카페 더 스토리',
     desc: '사이즈업 + 원두 선택',
     price: 1000,
-    bgColor: '#FFF8E1',
-    btnColor: '#FFB300',
+    bgColor: '#EFF6FF',
+    btnColor: '#3B82F6',
   },
   {
     id: 3,
@@ -37,9 +37,18 @@ const CARD_DATA = [
     brand: '카페 더 스토리',
     desc: '아메리카노 1+1 쿠폰',
     price: 2000,
-    bgColor: '#FFEBEE',
-    btnColor: '#E53935',
+    bgColor: '#EFF6FF',
+    btnColor: '#3B82F6',
   },
+  {
+    id: 4,
+    title: '스페셜 쿠폰',
+    brand: '카페 더 스토리',
+    desc: '프리미엄 음료 교환권',
+    price: 3000,
+    bgColor: '#EFF6FF',
+    btnColor: '#3B82F6',
+  }
 ];
 
 export default function App({ navigation }) {
@@ -132,7 +141,7 @@ export default function App({ navigation }) {
                     <Text style={styles.cardTitle}>{item.title}</Text>
                     <Text style={styles.cardBrand}>{item.brand}</Text>
                     <Text style={styles.cardDesc}>{item.desc}</Text>
-                    <Text style={{ marginTop: 5, fontSize: 25, fontWeight: 'bold', color: '#aa0b0bff' }}>
+                    <Text style={{ fontSize: 25, fontWeight: 'bold', color: '#aa0b0bff', marginTop: 7}}>
                       {item.price.toLocaleString()}P
                     </Text>
                   </View>

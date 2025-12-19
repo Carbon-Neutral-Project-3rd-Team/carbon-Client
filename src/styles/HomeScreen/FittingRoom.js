@@ -100,6 +100,40 @@ const styles = StyleSheet.create({
     borderColor: '#DDD',
     padding: 5,
   },
+  gridItemImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 6,
+  },
+  // styles/HomeScreen/FittingRoom.js 에 추가
+buttonContainer: {
+  paddingHorizontal: 20,
+  paddingBottom: 20, // 하단 여백
+  paddingTop: 20,
+},
+applyButton: {
+  backgroundColor: '#FF6B6B', // 포인트가 되는 색상
+  paddingVertical: 15,
+  borderRadius: 12,
+  alignItems: 'center',
+  justifyContent: 'center',
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 4,
+  elevation: 3, // 안드로이드 그림자
+},
+applyButtonText: {
+  color: '#FFFFFF',
+  fontSize: 18,
+  fontWeight: 'bold',
+},
+// 이전 답변에서 드린 아이템 이미지 스타일도 잊지 마세요!
+gridItemImage: {
+  width: '100%',
+  height: '100%',
+  borderRadius: 6,
+},
 });
 
 export default styles;

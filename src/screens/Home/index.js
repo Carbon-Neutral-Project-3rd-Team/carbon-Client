@@ -18,7 +18,7 @@ import styles from '../../styles/HomeScreen/Home';
 
 const { width, height } = Dimensions.get('window');
 
-const videoSource = require('../../../assets/HomeVideo_final.mp4');
+const videoSource = require('../../../assets/RealBefore.mp4');
 
 export default function HomeScreen({navigation}) {
   

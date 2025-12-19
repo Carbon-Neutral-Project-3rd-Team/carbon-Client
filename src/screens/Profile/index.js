@@ -58,7 +58,7 @@ const ProfileScreen = ({ navigation }) => {
 
           <View style={styles.cardWrapper}>
             <Image 
-              source={require('../../../assets/induk.png')} 
+              source={require('../../../assets/profile_induk.png')} 
               style={styles.floatingStampImage}
             />
 
@@ -74,7 +74,7 @@ const ProfileScreen = ({ navigation }) => {
               <View style={styles.statsRow}>
                 <View style={styles.statItem}>
                   <Text style={styles.statLabel}>포인트</Text>
-                  <Text style={styles.statValue}>1,000P</Text>
+                  <Text style={styles.statValue}>1,523P</Text>
                 </View>
                 <View style={styles.divider} />
                 <View style={styles.statItem}>
@@ -122,7 +122,7 @@ const ProfileScreen = ({ navigation }) => {
                 <Text style={styles.itemDesc}>탄소 중립 실천 완료!{"\n"}계속 걸어서 지구를 지킬 수 있어요</Text>
               </View>
               <View>
-                <Text style={styles.recordValue}>50<Text style={styles.unitValue}>%</Text></Text>
+                <Text style={styles.recordValue}>70<Text style={styles.unitValue}>%</Text></Text>
               </View>
             </View>
 
