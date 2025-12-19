@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
   // [핵심] 캐러셀(가로 스크롤) 스타일
   carouselContainer: {
-    marginTop: 10,
+    marginTop: 30,
   },
   carouselContent: {
     paddingHorizontal: 20, // 시작 부분 여백
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   cardTextContent: { zIndex: 1 },
   cardTitle: { fontSize: 14, color: '#555', marginBottom: 5, fontWeight: '600' },
   cardBrand: { fontSize: 22, color: '#222', fontWeight: 'bold', marginBottom: 5 },
-  cardDesc: { fontSize: 15, color: '#777' },
+  cardDesc: { fontSize: 18, color: '#3B82F6', fontWeight: 'bold', marginTop: 20 },
 
   // 카드 내부 요소
   exchangeButton: {

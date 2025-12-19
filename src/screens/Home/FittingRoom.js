@@ -17,18 +17,47 @@ const CATEGORIES = [
 const ITEMS = { //해당하는 아이템을 입은 인덕이를 보여주기 위한 더미 데이터
     //각 카테고리를 입은 인덕이를 나열합니다.
   hat: [ 
-    { id: 'h1', color: '#FF6B6B', image: null }, 
-    { id: 'h2', color: '#FFD93D', image: null },
-    { id: 'h3', color: '#6BCB77', image: null },
+    { id: 't0', color: '#FF9F1C', image: require('../../../assets/ForShow/graduate2.png') },
+    { id: 't1', color: '#FF9F1C', image: require('../../../assets/Hat/clover.png') },
+    { id: 't2', color: '#FF9F1C', image: require('../../../assets/Hat/cap.png') },
+    { id: 't3', color: '#FF9F1C', image: require('../../../assets/Hat/headphone.png') },
+    { id: 't4', color: '#FF9F1C', image: require('../../../assets/Hat/sunglasses.png') },
+    { id: 't5', color: '#FF9F1C', image: require('../../../assets/Hat/deer.png') },
+    { id: 't6', color: '#FF9F1C', image: require('../../../assets/Hat/curly.jpg') },
+    { id: 't7', color: '#FF9F1C', image: require('../../../assets/Hat/blonde.jpg') },
+    { id: 't8', color: '#FF9F1C', image: require('../../../assets/Hat/bear.png') },
+    { id: 't9', color: '#FF9F1C', image: require('../../../assets/Hat/Lipstick.png') },
+    { id: 't10', color: '#FF9F1C', image: require('../../../assets/Hat/pama.png') },
+    { id: 't11', color: '#FF9F1C', image: require('../../../assets/Hat/long.jpg') },
   ],
   top: [
-    { id: 't1', color: '#FF9F1C', image: null },
-    { id: 't2', color: '#2EC4B6', image: null },
-    { id: 't3', color: '#E71D36', image: null },
+    {id : 't0', color: '#FF9F1C', image: require('../../../assets/ForShow/graduate.png')},
+    { id: 't1', color: '#FF9F1C', image: require('../../../assets/Outer/blackSheep.png') },
+    { id: 't2', color: '#2EC4B6', image: require('../../../assets/Outer/leather.png') },
+    { id: 't3', color: '#FF9F1C', image: require('../../../assets/Outer/swimsuit.png') },
+    { id: 't4', color: '#2EC4B6', image: require('../../../assets/Outer/hwaiian.png') },
+    { id: 't5', color: '#FF9F1C', image: require('../../../assets/Outer/heavy1.png') },
+    { id: 't6', color: '#2EC4B6', image: require('../../../assets/Outer/hoodie1.png') },
+    { id: 't7', color: '#FF9F1C', image: require('../../../assets/Outer/heavy2.png') },
+    { id: 't8', color: '#2EC4B6', image: require('../../../assets/Outer/jean.png') },
+    { id: 't9', color: '#FF9F1C', image: require('../../../assets/Outer/college.png') },
+    { id: 't10', color: '#2EC4B6', image: require('../../../assets/Outer/college2.png') },
+    { id: 't11', color: '#FF9F1C', image: require('../../../assets/Outer/college3.png') },
+    { id: 't12', color: '#2EC4B6', image: require('../../../assets/Outer/leather.png') },
   ],
   bottom: [
-    { id: 'b1', color: '#011627', image: null },
-    { id: 'b2', color: '#5C3C92', image: null },
+    { id: 't0', color: '#FF9F1C', image: require('../../../assets/ForShow/graduate3.png') },
+    { id: 't1', color: '#FF9F1C', image: require('../../../assets/Pants/boots.png') },
+    { id: 't2', color: '#FF9F1C', image: require('../../../assets/Pants/croocs.png') },
+    { id: 't3', color: '#FF9F1C', image: require('../../../assets/Pants/roller.png') },
+    { id: 't4', color: '#FF9F1C', image: require('../../../assets/Pants/converse.png') },
+    { id: 't5', color: '#FF9F1C', image: require('../../../assets/Pants/red.png') },
+    { id: 't6', color: '#FF9F1C', image: require('../../../assets/Pants/board.jpg') },
+    { id: 't7', color: '#FF9F1C', image: require('../../../assets/Pants/socks.png') },
+    { id: 't8', color: '#FF9F1C', image: require('../../../assets/Pants/boots2.png') },
+    { id: 't9', color: '#FF9F1C', image: require('../../../assets/Pants/walker.png') },
+    { id: 't10', color: '#FF9F1C', image: require('../../../assets/Pants/purple.jpg') },
+    { id: 't11', color: '#FF9F1C', image: require('../../../assets/Pants/sandle.png') },
   ]
 };
 
@@ -116,25 +145,47 @@ export default function App({navigation}) {
 
               {/* (B) 아이템 리스트 (나머지 영역) */}
               <View style={styles.itemGridArea}>
-                <ScrollView contentContainerStyle={styles.itemGridContent}>
-                  {ITEMS[selectedCategory] ? (
-                    ITEMS[selectedCategory].map((item) => (
-                      <TouchableOpacity
-                        key={item.id}
-                        style={styles.gridItem}
-                        onPress={() => handleSelectItem(item)}
-                      >
-                        <View style={{ flex: 1, backgroundColor: item.color, borderRadius: 6 }} />
-                      </TouchableOpacity>
-                    ))
-                  ) : (
-                    <Text>아이템이 없습니다.</Text>
-                  )}
-                </ScrollView>
-              </View>
-
+              <ScrollView contentContainerStyle={styles.itemGridContent}>
+                {ITEMS[selectedCategory] ? (
+                ITEMS[selectedCategory].map((item) => (
+        <TouchableOpacity
+          key={item.id}
+          style={styles.gridItem}
+          onPress={() => handleSelectItem(item)}
+        >
+          {/* 이미지가 있으면 이미지를 보여주고, 없으면 배경색을 보여줍니다. */}
+          {item.image ? (
+            <Image 
+              source={item.image} 
+              style={styles.gridItemImage} 
+              resizeMode="contain" 
+            />
+          ) : (
+            <View style={{ flex: 1, backgroundColor: item.color, borderRadius: 6 }} />
+            )}
+          </TouchableOpacity>
+            ))
+            ) : (
+          <Text>아이템이 없습니다.</Text>
+          )}
+          </ScrollView>
+                </View>
             </View>
           </View>
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity 
+              style={styles.applyButton}
+              onPress={() => {
+              // 'MainHome'은 이동하고 싶은 페이지의 이름으로 변경하세요 (예: 'Home', 'Result' 등)
+              navigation.navigate('ExtraHome', { 
+              selectedDuckImage: currentImage 
+            });
+          }}
+          >
+          <Text style={styles.applyButtonText}>적용하기</Text>
+        </TouchableOpacity>
+        </View>
 
         </View>
       </SafeAreaView>

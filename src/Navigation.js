@@ -18,6 +18,8 @@ import GoalSetting from './screens/Profile/GoalSetting';
 //--프로필 스크린 import--
 import AccountSetting from './screens/Profile/AccountSetting';
 import { Ionicons } from '@expo/vector-icons';
+//--시연용 추가 홈 화면--
+import ExtraHome from './screens/Home/ExtraHome';
 
 
 const Stack = createNativeStackNavigator();
@@ -76,7 +78,12 @@ export default function AppNavigator(){
                 name="FittingRoom"
                 component={FittingRoom}
                 options={{headerShown:  false}}
-                />
+            />
+            <Stack.Screen
+                name="ExtraHome"
+                component={ExtraHome}
+                options={{headerShown: false}}
+            />
             </>
             ) : (
                 //--로그아웃인 상태
